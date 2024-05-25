@@ -1,4 +1,4 @@
-name: Count Pushed Commits
+name: Diff Push Changes
 
 on:
   push:
@@ -6,25 +6,18 @@ on:
       - main  # 필요한 브랜치 이름을 설정하세요.
 
 jobs:
-  count-commits:
+  diff-changes:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Get the number of pushed commits
+    - name: Display commit range
       run: |
-        # Get the range of commits in the push
-        commit_range="${{ github.event.before }}..${{ github.event.after }}"
-        echo "Commit range: $commit_range"
+        echo "Commit range: ${{ github.event.before }}..${{ github.event.after }}"
 
-        # Count the number of commits in the range
-        commit_count=$(git rev-list --count $commit_range)
-        echo "Number of pushed commits: $commit_count"
-
-        # Set the commit count as an output
-        echo "::set-output name=commit_count::$commit_count"
-
-    - name: Display the number of pushed commits
-      run: echo "The number of pushed commits is ${{ steps.get-commit-count.outputs.commit_count }}"
+    - name: Show diff
+      run: |
+        git fetch origin ${{ github.event.before }} ${{ github.event.after }}
+        git diff ${{ github.event.before }} ${{ github.event.after }}
