@@ -1,31 +1,30 @@
-name: Log Changed Code
+name: Count Pushed Commits
 
 on:
   push:
     branches:
-      - main  # 필요한 브랜치 이름을 설정하세요. 모든 브랜치에 대해 실행하려면 이 줄을 제거하세요.
+      - main  # 필요한 브랜치 이름을 설정하세요.
 
 jobs:
-  log-changes:
+  count-commits:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Get the previous commit SHA
-      id: prev-commit
-      run: echo "::set-output name=sha::$(git rev-parse HEAD~1)"
-
-    - name: Get the current commit SHA
-      id: curr-commit
-      run: echo "::set-output name=sha::$(git rev-parse HEAD)"
-
-    - name: Display the commit SHAs
+    - name: Get the number of pushed commits
       run: |
-        echo "Previous commit SHA: ${{ steps.prev-commit.outputs.sha }}"
-        echo "Current commit SHA: ${{ steps.curr-commit.outputs.sha }}"
+        # Get the range of commits in the push
+        commit_range="${{ github.event.before }}..${{ github.event.after }}"
+        echo "Commit range: $commit_range"
 
-    - name: Log changes
-      run: |
-        git diff ${{ steps.prev-commit.outputs.sha }} ${{ steps.curr-commit.outputs.sha }} --unified=0
+        # Count the number of commits in the range
+        commit_count=$(git rev-list --count $commit_range)
+        echo "Number of pushed commits: $commit_count"
+
+        # Set the commit count as an output
+        echo "::set-output name=commit_count::$commit_count"
+
+    - name: Display the number of pushed commits
+      run: echo "The number of pushed commits is ${{ steps.get-commit-count.outputs.commit_count }}"
