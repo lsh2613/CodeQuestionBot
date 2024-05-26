@@ -9,3 +9,6 @@ this is test
 gitHub Action Test
 
 commit1
+
+commit2
+
