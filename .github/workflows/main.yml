@@ -17,7 +17,15 @@ jobs:
       run: |
         echo "Commit range: ${{ github.event.before }}..${{ github.event.after }}"
 
+    - name: Get the recent commit author
+      run: |
+          commit_sha=${{ github.event.after }}
+          echo "Commit SHA: $commit_sha"
+          author=$(git log -1 --format="%an <%ae>" $commit_sha)
+          echo "Author: $author"
+          echo "AUTHOR_NAME=$author" >> $GITHUB_ENV
+
     - name: Show diff
       run: |
         git fetch origin ${{ github.event.before }} ${{ github.event.after }}
-        git diff ${{ github.event.before }} ${{ github.event.after }}
+        git diff ${{ github.event.before }} ${{ github.event.after }} | grep '^+[^+]'
