@@ -36,10 +36,16 @@ jobs:
         aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
         aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
         aws-region: ${{ secrets.AWS_REGION }}
+        
+    - name: Create JSON payload
+      run: |
+        echo '{"text": "Hello from GitHub Actions!"}' > payload.json
+        
     - name: Invoke Lambda function
       run: |
         aws lambda invoke \
           --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
-          --payload '{"text": "Hello from GitHub Actions!"}' \
+          --cli-binary-format raw-in-base64-out \
+          --payload file://payload.json \
           response.json
         cat response.json
