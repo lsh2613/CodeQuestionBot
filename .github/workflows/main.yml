@@ -36,6 +36,9 @@ jobs:
       run: |
         echo '{"author": "$AUTHOR_NAME", "diff": "$DIFF_OUTPUT"}' > payload.json
         cat payload.json
+        echo "The value of MY_VAR is: $AUTHOR_NAME"
+        echo 'The value of MY_VAR is: $AUTHOR_NAME'
+        echo "The value of MY_VAR is: ${{AUTHOR_NAME}}"
         
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
