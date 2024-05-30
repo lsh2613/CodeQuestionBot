@@ -41,7 +41,7 @@ jobs:
         
     - name: Create JSON payload
       run: |
-        echo '{"author": "' ${{ env.AUTHOR_NAME }} '", "diff": "' ${{ env.DIFF_OUTPUT }} '"}' > payload.json
+        echo "{\"author\": \"${{ env.AUTHOR_NAME }}\", \"diff\": \"${{ env.DIFF_OUTPUT }}\"}" > payload.json
         
     - name: Invoke Lambda function
       run: |
