@@ -28,7 +28,7 @@ jobs:
     - name: Show diff and save to environment variable
       id: diff
       run: |
-        git fetch origin main
+        git fetch --all
         diff=$(git diff ${{ github.event.before }} ${{ github.event.after }})
         echo "diff=$diff" >> $GITHUB_ENV
 
