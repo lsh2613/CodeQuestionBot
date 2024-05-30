@@ -29,7 +29,7 @@ jobs:
       id: diff
       run: |
         git fetch origin
-        diff=$(git diff ${{ github.event.before }} ${{ github.event.after }} | grep '^+[^+]' | sed 's/"/\\"/g' | tr '\n' ' ')
+        diff=$(git diff ${{ github.event.before }} ${{ github.event.after }})
         echo "diff=$diff" >> $GITHUB_ENV
 
     - name: Create payload.json
