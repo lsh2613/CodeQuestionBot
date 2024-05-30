@@ -34,7 +34,7 @@ jobs:
 
     - name: Create JSON payload
       run: |
-        echo "{\"author\": \"${{ env.AUTHOR_NAME }}\", \"diff\": \"${{ env.DIFF_OUTPUT }}\"}" > payload.json
+        echo '{"author": "${{ env.AUTHOR_NAME }}", "diff": "${{ env.DIFF_OUTPUT }}"}' > payload.json
         
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
