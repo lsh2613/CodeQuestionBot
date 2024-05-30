@@ -16,7 +16,7 @@ jobs:
     - name: Display commit range
       run: |
         echo "Commit range: ${{ github.event.before }}..${{ github.event.after }}"
-    
+
     - name: Get the recent commit author
       id: author
       run: |
@@ -24,18 +24,18 @@ jobs:
         echo "Commit SHA: $commit_sha"
         author=$(git log -1 --format="%an <%ae>" $commit_sha)
         echo "author=$author" >> $GITHUB_ENV
-      
+
     - name: Show diff and save to environment variable
       id: diff
       run: |
-        git fetch origin ${{ github.event.before }} ${{ github.event.after }}
+        git fetch origin
         diff=$(git diff ${{ github.event.before }} ${{ github.event.after }} | grep '^+[^+]' | sed 's/"/\\"/g' | tr '\n' ' ')
         echo "diff=$diff" >> $GITHUB_ENV
 
     - name: Create payload.json
       run: |
         echo "{\"author\": \"${{ env.author }}\", \"diff\": \"${{ env.diff }}\"}" > payload.json
-    
+
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
       with:
