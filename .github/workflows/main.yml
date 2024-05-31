@@ -24,16 +24,15 @@ jobs:
         author=$(git log -1 --format="%an <%ae>" $commit_sha)
         echo "author=$author" >> $GITHUB_ENV
 
-    - name: Show diff and save to environment variable
+    - name: Show diff and save to file
       run: |
         git fetch origin ${{ github.event.before }} ${{ github.event.after }}
-        git diff ${{ github.event.before }} ${{ github.event.after }}
-        diff=$(git diff ${{ github.event.before }} ${{ github.event.after }})
-        echo "diff=$diff" >> $GITHUB_ENV
+        git diff ${{ github.event.before }} ${{ github.event.after }} > diff.txt
 
     - name: Create payload.json
       run: |
-        echo "{\"author\": \"${{ env.author }}\", \"diff\": \"${{ env.diff }}\"}" > payload.json
+        diff=$(cat diff.txt | jq -Rs .)
+        echo "{\"author\": \"${{ env.author }}\", \"diff\": $diff}" > payload.json
 
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
