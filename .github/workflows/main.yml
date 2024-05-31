@@ -27,7 +27,7 @@ jobs:
     - name: Show diff and save to file
       run: |
         git fetch origin ${{ github.event.before }} ${{ github.event.after }}
-        git diff ${{ github.event.before }} ${{ github.event.after }} | grep '^+[^+]' > diff.txt
+        git diff ${{ github.event.before }} ${{ github.event.after }} | grep '^+[^+]' | sed 's/^+//' > diff.txt
         cat diff.txt
 
     - name: Create payload.json
