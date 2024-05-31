@@ -28,11 +28,13 @@ jobs:
       run: |
         git fetch origin ${{ github.event.before }} ${{ github.event.after }}
         git diff ${{ github.event.before }} ${{ github.event.after }} > diff.txt
+        cat diff.txt
 
     - name: Create payload.json
       run: |
         diff=$(cat diff.txt | jq -Rs .)
         echo "{\"author\": \"${{ env.author }}\", \"diff\": $diff}" > payload.json
+        cat payload.json
 
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v1
