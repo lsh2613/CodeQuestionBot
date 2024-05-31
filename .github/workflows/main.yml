@@ -29,6 +29,7 @@ jobs:
       id: diff
       run: |
         git fetch --all
+        git log -3
         diff=$(git diff ${{ github.event.before }} ${{ github.event.after }})
         echo "diff=$diff" >> $GITHUB_ENV
 
