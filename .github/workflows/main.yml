@@ -16,7 +16,6 @@ jobs:
     - name: Display commit range
       run: |
         echo "Commit range: ${{ github.event.before }}..${{ github.event.after }}"
-        git log -3
 
     - name: Get the recent commit author
       id: author
@@ -29,7 +28,8 @@ jobs:
     - name: Show diff and save to environment variable
       id: diff
       run: |
-        git fetch --all
+        git fetch origin ${{ github.event.before }} ${{ github.event.after }}
+        git pull origin main
         diff=$(git diff ${{ github.event.before }} ${{ github.event.after }})
         echo "diff=$diff" >> $GITHUB_ENV
 
