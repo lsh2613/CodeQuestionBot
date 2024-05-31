@@ -1,14 +1,3 @@
-hi my name is ls
+This is CodeQuestionBot
 
-to day is 5/25h
-
-
-this is test
-
-
-gitHub Action Test
-
-commit1
-
-commit2
-
+maded by Cobot Team
