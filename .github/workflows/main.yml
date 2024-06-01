@@ -1,4 +1,4 @@
-name: Diff Push Changes
+name: Code Questioning workflow
 
 on:
   push:
@@ -13,16 +13,17 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Display commit range
-      run: |
-        echo "Commit range: ${{ github.event.before }}..${{ github.event.after }}"
+    # - name: Display commit range
+    #   run: |
+    #     echo "Commit range: ${{ github.event.before }}..${{ github.event.after }}"
 
     - name: Get the recent commit author
       run: |
-        commit_sha=${{ github.event.after }}
-        echo "Commit SHA: $commit_sha"
-        author=$(git log -1 --format="%an <%ae>" $commit_sha)
-        echo "author=$author" >> $GITHUB_ENV
+        recent_commit=${{ github.event.after }} # 최근 커밋 가져오기
+        echo "Commit SHA: $recent_commit" # 최근 커밋 출력
+        # author=$(git log -1 --format="%an <%ae>" $recent_commit) # 최근 커밋에서 author 저장
+        author=$(git log -1 --format="%an <%ae>") # 최근 커밋에서 author 저장
+        echo "author=$author" >> $GITHUB_ENV # author 출력 후 저장
 
     - name: Show diff and save to file
       run: |
