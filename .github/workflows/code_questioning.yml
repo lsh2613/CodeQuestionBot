@@ -15,10 +15,12 @@ jobs:
 
     - name: Get the recent commit author
       run: |
-        commit_sha=${{ github.event.after }}
-        echo "Commit SHA: $commit_sha"
-        author=$(git log -1 --format="%an <%ae>" $commit_sha)
+        author=$(git log -1 --format="%an <%ae>")
         echo "author=$author" >> $GITHUB_ENV
+      #   commit_sha=${{ github.event.after }}
+      #   echo "Commit SHA: $commit_sha"
+      #   author=$(git log -1 --format="%an <%ae>" $commit_sha)
+        
 
     - name: save to diff.txt
       run: |
