@@ -15,8 +15,10 @@ jobs:
 
     - name: Get the recent commit author
       run: |
-        author=$(git log -1 --format="%an <%ae>") # 가장 최근 커밋에서 author 추출 후 저장
-        echo "author=$author" >> $GITHUB_ENV # author 출력 후 저장
+        commit_sha=${{ github.event.after }}
+        echo "Commit SHA: $commit_sha"
+        author=$(git log -1 --format="%an <%ae>" $commit_sha)
+        echo "author=$author" >> $GITHUB_ENV
         
     # Display the author for debugging purposes
     - name: Display Author
