@@ -17,6 +17,10 @@ jobs:
       run: |
         author=$(git log -1 --format="%an <%ae>") # 가장 최근 커밋에서 author 추출 후 저장
         echo "author of recent commit = $author" >> $GITHUB_ENV # author 출력 후 저장
+        
+    # Display the author for debugging purposes
+    - name: Display Author
+      run: echo ${{ env.author }}
 
     - name: save to diff.txt
       run: |
