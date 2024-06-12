@@ -19,10 +19,6 @@ jobs:
         echo "Commit SHA: $commit_sha"
         author=$(git log -1 --format="%an <%ae>" $commit_sha)
         echo "author=$author" >> $GITHUB_ENV
-        
-    # Display the author for debugging purposes
-    - name: Display Author
-      run: echo ${{ env.author }}
 
     - name: save to diff.txt
       run: |
