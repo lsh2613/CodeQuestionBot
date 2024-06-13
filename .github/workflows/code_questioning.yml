@@ -15,8 +15,10 @@ jobs:
 
     - name: Get the recent commit author
       run: |
-        author=$(git log -1 --format="%an <%ae>")
-        echo "author=$author" >> $GITHUB_ENV
+        author_id=$(git log -1 --format="%an <%ae>" | grep -o '<[0-9]\+' | sed 's/<//')
+        echo "author_id=$author_id" >> $GITHUB_ENV
+      # author=$(git log -1 --format="%an <%ae>")
+      # echo "author=$author" >> $GITHUB_ENV
       #   commit_sha=${{ github.event.after }}
       #   echo "Commit SHA: $commit_sha"
       #   author=$(git log -1 --format="%an <%ae>" $commit_sha)
@@ -31,7 +33,7 @@ jobs:
     - name: Create payload.json
       run: |
         diff=$(cat diff.txt | jq -Rs .) # diff.txt를 josn 형식의 값으로 변환
-        echo "{\"author\": \"${{ env.author }}\", \"diff\": $diff}" > payload.json # author와 diff를 json 확장자로 변환
+        echo "{\"author_id\": \"${{ env.author_id }}\", \"diff\": $diff}" > payload.json # author와 diff를 json 확장자로 변환
         cat payload.json
 
     - name: Configure AWS credentials from Test account
