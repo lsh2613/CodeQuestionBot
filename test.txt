@@ -1,4 +1,0 @@
-test.txt에 텍스트 추가
-
-lambda slack 연동 테스트
-6/15
