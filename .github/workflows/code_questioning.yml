@@ -3,7 +3,7 @@ name: Code Questioning workflow
 on:
   push:
     branches:
-      - main  # 필요한 브랜치 이름을 설정하세요.
+      - ddos  # 필요한 브랜치 이름을 설정하세요.
 
 jobs:
   diff-changes:
