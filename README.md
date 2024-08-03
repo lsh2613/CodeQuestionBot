@@ -59,7 +59,8 @@
 2. 파일 이름을 적는 칸에 .github/workflows/cobot.yml 을 차례대로 입력합니다.
     > 💡 파일 이름은 바꿔도 무방
 
-    ![image](https://github.com/user-attachments/assets/805b2855-0f5e-4afa-a432-c158f3af8d85)
+    ![image](https://github.com/user-attachments/assets/01c78338-0d11-431b-a696-10368d60cb13)
+
 
 3. 생성한 yml 파일에 해당 코드를 붙여넣기
 
@@ -110,7 +111,7 @@
 
 4. Commit changes를 통해 변경 사항 저장
 
-    ![커밋](https://github.com/user-attachments/assets/6e9afa9b-72fe-4c52-bbe5-7cc03de05d65)
+    ![yml](https://github.com/user-attachments/assets/59e5a6f6-9180-4385-8e47-adb6850b55db)
 
 <br>
 <hr>
