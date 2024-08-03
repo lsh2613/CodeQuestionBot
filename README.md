@@ -1,5 +1,10 @@
 # Code Question Bot
-(어떤 프로젝트인지, 실행 예시)
+> 이 프로젝트는 공부한 내용을 깃허브에 기록하는 사람들에게 해당 내용을 복습할 수 있도록 문제를 만들어주는 Bot입니다.
+> - 지정한 브랜치에 공부 내용을 push하면 해당 코드와 사이즈를 참고하여 적절한 갯수의 문제를 제공해줍니다.
+> - 하단의 사진은 예시이며 정답은 스포일러 태그를 활용하여 클릭 시 정답을 확인할 수 있도록 개발되었습니다.
+>
+> ![image](https://github.com/user-attachments/assets/f86c954f-5aad-4b1e-b370-ed99cab5e270)
+
 
 ## 목차
 [1. Discord Webhook 생성 가이드](#1-discord-webhook-생성-가이드)
