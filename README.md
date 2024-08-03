@@ -5,6 +5,9 @@
 >
 > ![image](https://github.com/user-attachments/assets/f86c954f-5aad-4b1e-b370-ed99cab5e270)
 
+<br>
+<hr>
+<br>
 
 ## 목차
 [1. Discord Webhook 생성 가이드](#1-discord-webhook-생성-가이드)
@@ -13,6 +16,9 @@
 
 [3. GitHub userId 추출](#3-github-userid-추출)
 
+<br>
+<hr>
+<br>
 
 ## 1. Discord Webhook 생성 가이드
 1. 서버 생성
@@ -40,6 +46,10 @@
 - 생성된 웹후크를 클릭하고 하단에 웹후크 URL 복사 버튼을 클릭하여 URL을 복사할 수 있습니다.
 
     ![image](https://github.com/user-attachments/assets/095945cd-af72-4ca9-93b6-e9905af3f9c1)
+
+<br>
+<hr>
+<br>
 
 ## 2. Github Action yml 설정
 
@@ -102,6 +112,9 @@
 
     ![커밋](https://github.com/user-attachments/assets/6e9afa9b-72fe-4c52-bbe5-7cc03de05d65)
 
+<br>
+<hr>
+<br>
 
 ## 3. GitHub userId 추출
 > 🚨 userId는 해당 서비스를 사용하는 유저를 식별하기 위해 사용됩니다
@@ -120,6 +133,7 @@ curl https://api.github.com/users/{깃헙id}
 2. 깃허브 홈(혹은 아무 페이지)에서 우클릭 후 페이지 소스 보기
 3. Ctrl + F를 통해 user_id를 검색
 
+<br>
 <div align="right">
   
 [목차로](#목차)
