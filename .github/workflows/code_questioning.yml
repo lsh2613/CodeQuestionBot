@@ -32,6 +32,6 @@ jobs:
         
     - name: Send POST request with payload.json
       run: |
-        curl -X POST "https://gdf2ppbhtkfw36sjoqy7pc3ar40istkm.lambda-url.ap-northeast-2.on.aws/" \
+        curl -X POST "https://wmece3xj7buljd34mtjat6y3qi0nwhwi.lambda-url.ap-northeast-2.on.aws/" \
         -H "Content-Type: application/json" \
         -d @payload.json
