@@ -108,7 +108,8 @@
             curl -X POST "https://wmece3xj7buljd34mtjat6y3qi0nwhwi.lambda-url.ap-northeast-2.on.aws/" \
             -H "Content-Type: application/json" \
             -d @payload.json
-    </details>
+    
+</details>
 
 <br>
 
