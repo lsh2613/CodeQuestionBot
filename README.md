@@ -16,6 +16,9 @@
 
 [3. GitHub userId 추출](#3-github-userid-추출)
 
+[4. google-form으로 제출](#4-google-form-제출)
+
+
 <br>
 <hr>
 <br>
@@ -135,6 +138,15 @@ curl https://api.github.com/users/{깃헙id}
 3. Ctrl + F를 통해 user_id를 검색
 
 <br>
+<hr>
+<br>
+
+## 4. google form 제출
+[google-form](https://docs.google.com/forms/d/e/1FAIpQLSfuer4Fdn4YPqCjH8Gk_9WSi-GYwkuRsFIkoxeRwbNtSh8e0Q/viewform?usp=sf_link)을 통해 github의 userId와 discord의 webhook URL을 제출해주세요
+
+<br>
+<br>
+
 <div align="right">
   
 [목차로](#목차)
