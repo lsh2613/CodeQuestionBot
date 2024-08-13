@@ -1,4 +1,4 @@
-name: Code Questioning workflow
+name: Cobot workflow
 
 on:
   push:
@@ -13,11 +13,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Get the recent commit author
+    - name: Get the recent commit author_id
       run: |
-        author_id=$(git log -1 --format="%an <%ae>" | grep -o '<[0-9]\+' | sed 's/<//')
+        author_id=$(git log -1 | grep -o '<[0-9]\+' | sed 's/<//')
         echo "author_id=$author_id" >> $GITHUB_ENV
-
+        
+    - name: Get the recent commit author_email
+      run: |
+        author_email=$(git log -1 | grep -o '<[^>]*>' | sed 's/[<>]//g')
+        echo "author_email=$author_email" >> $GITHUB_ENV
+        
     - name: save to diff.txt
       run: |
         git fetch origin ${{ github.event.before }} ${{ github.event.after }} # 이전 커밋과 현재 커밋 가져오기
@@ -26,8 +31,8 @@ jobs:
 
     - name: Create payload.json
       run: |
-        diff=$(cat diff.txt | jq -Rs .) # diff.txt를 josn 형식의 값으로 변환
-        echo "{\"author_id\": \"${{ env.author_id }}\", \"diff\": $diff}" > payload.json # author와 diff를 json 확장자로 변환
+        diff=$(cat diff.txt | jq -Rs .) # diff.txt를 josn으로 변환
+        echo "{\"author_id\": \"${{ env.author_id }}\", \"author_email\": \"${{ env.author_email }}\", \"diff\": $diff}" > payload.json # author와 diff를 json 확장자로 변환
         cat payload.json
         
     - name: Send POST request with payload.json
